@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+        <div>
+        <form method="POST" class="sale-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Notify me!</button>
+        </form>
+        </div>
+    <!-- {{ clothing.owner }} -->
+{% endblock %}
+
+<!-- 
+    <table>
+    <tr>
+        <td>  Item number </td>
+        <td> Description </td>
+        <td> From </td>
+        <td> Price </td>
+        <td> Status </td>
+
+
+        <tr>
+            <td>{{ clothing.item_code }}</td>
+            <td> {{ clothing.description }} </td>
+            <td> {{ clothing.owner }} </td>
+            <td> {{ clothing.price }} </td>
+            <td> {% if clothing.sold %} SOLD {% endif %} </td>
+        </tr>
+
+    </table>
+
+
+-->

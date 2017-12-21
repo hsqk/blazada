@@ -1,0 +1,76 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>Don't ask about the url...</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Allura|Cormorant+Garamond|Life+Savers|Parisienne|Sacramento|Tangerine" rel="stylesheet"> 
+    </head>
+    <body>
+
+        
+        <!-- announcements here -->
+        <div class="content container">  
+            <div class="row" id="page-header">
+                Announcement: The event has ended! Thanks everyone!
+            </div>
+        </div>
+
+        <div class="parallax bg_1"> 
+
+        <div class="content container">
+            <div class='row'>
+            <div class='col-md-2'> </div>
+            <div class = "col-md-8 centre_link_no_deco">
+                <a href="/">
+                <div class='header_title'>Lazada Price Notifier!</div>
+                <div class='header_tagline'>...it does what it says! </div>
+                </a>
+                    
+            </div>
+            <div class='col-md-2'> </div>
+            </div>
+        </div>
+        
+
+        <div class="content container">
+            <div class="row">
+
+                <div class="col-md-2">    </div>
+
+                <div class="col-md-8 body_text">
+                <hr>
+                {% block content %}
+                {% endblock %}
+                </div>
+
+                <div class="col-md-2"> </div>
+
+            </div>
+        </div>
+
+
+        <div class="content container">
+            <div class="row">
+
+                <div class="col-md-2"> </div>
+
+                <div class="col-md-8 body_text">
+                    <div class="footer">
+                        <p> A GEQ project by G15A </p>
+                        <p> Sheng Yeow, Yi Qian, Shane, Ze Xi, Kenneth </p>
+                        <p> &copy; 2017 </p>
+                    </div>
+                </div>
+
+                <div class="col-md-2"> </div>
+
+            </div>
+        </div>
+     </div>
+    </body>
+</html>
+

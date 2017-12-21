@@ -1,0 +1,91 @@
+.parallax.bg_1 {
+  /* The image used */
+    background-image: url("../img/");
+    
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#page-header {
+    text-align: left;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.header_title {
+    font-family: "Life Savers", cursive;
+    font-size: 72px;
+    text-align: center;
+    color: #FCA205;
+}
+
+
+.header_tagline{
+    font-family: 'Allura', cursive;
+    font-size: 36px;
+    text-align: center;
+    color: black;
+}
+
+
+.centre_link_no_deco {
+    text-align: center;
+    background-color:white;
+}
+
+.centre_link_no_deco a:hover{
+    text-decoration: none;
+}
+
+.glyphicon {
+    color: purple;
+    font-size:1.75em
+}
+
+/* dark forest lime sea light mediumsea */
+.glyphicon:hover{
+    color:seagreen;
+}
+
+body {
+    padding-left: 15px;
+}
+
+
+.body_text {
+    font-family: Georgia;
+    background-color:white;
+}
+
+.footer {
+    font-family: 'Tangerine', cursive;
+    font-size: 16px;
+    font-style: bold;
+    color: black;
+    text-align: center;
+    
+}
+
+/*
+
+    font-family: 'Life Savers', cursive;
+
+    font-family: 'Sacramento', cursive;
+    font-family: 'Allura', cursive;
+    font-family: 'Parisienne', cursive;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Tangerine', cursive;
+    font-family: 'Alex Brush', cursive;
+
+
+
+
+
+*/
