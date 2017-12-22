@@ -4,10 +4,14 @@
         <div>
         <form method="POST" class="sale-form">{% csrf_token %}
         {{ form.as_p }}
+        <div class="g-recaptcha" data-sitekey="6LcpCj4UAAAAADhQ3Tc5TA6zs7ReilkJ8hr0rAKS"></div>
         <button type="submit" class="save btn btn-default">Notify me!</button>
         </form>
+            {% if success == 1 %}
+                    <p> Done! We'll notify you by WhatsApp/Telegram when {{ itemName }} has reached the price of {{ target }} </p>
+            {% endif %}
+
         </div>
-    <!-- {{ clothing.owner }} -->
 {% endblock %}
 
 <!-- 

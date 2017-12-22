@@ -25,7 +25,7 @@ SECRET_KEY = 'r09juy=9+i62xl(xl(h-mwie(zb&0t&ft2qoi026(!=owrz_wm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'localhost']
 
 
 # Application definition
@@ -125,7 +125,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = '/'
 
-RECAPTCHA_PUBLIC_KEY = '6Lc79j0UAAAAAFWz481jfCNxnJNL_H2Ws9vSDLCR'
-RECAPTCHA_PRIVATE_KEY = '6Lc79j0UAAAAANEEKp7DHyOpxNeOaE-QiU73z012'
+RECAPTCHA_PUBLIC_KEY = '6LcpCj4UAAAAADhQ3Tc5TA6zs7ReilkJ8hr0rAKS'
+RECAPTCHA_PRIVATE_KEY = '6LcpCj4UAAAAAFzKfoLHL68RTPvEapYzC_YB0xu_'
 NOCAPTCHA = True
-RECAPTCHA_PROXY = 'http://127.0.0.1:8000'
