@@ -1,36 +1,15 @@
 from django import forms
 
-from .models import Tracker, Trackee
+from .models import Trackee
 
-'''
-class PostForm(forms.ModelForm):
-
-    class Meta:
-        model = Post
-        fields = ('title', 'text',)
-'''
-
-class TrackerForm(forms.ModelForm):
-    
-    class Meta:
-        model = Tracker
-        fields = ('mobile',)
+from captcha.fields import ReCaptchaField
 
 class TrackeeForm(forms.ModelForm):
     
     class Meta:
         model = Trackee
         fields = ('url', 'target', 'mobile')
-'''
-class SaleForm(forms.ModelForm):
     
-    class Meta:
-        model = Clothes
-        fields = ('item_code',)
+    captcha = ReCaptchaField()
 
-class SettlementForm(forms.ModelForm):
-    
-    class Meta:
-        model = Seller
-        fields = ('seller_code',)
-'''
+

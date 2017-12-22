@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Tracker, Trackee
+from .models import Trackee
 
-admin.site.register(Tracker)
 admin.site.register(Trackee)
