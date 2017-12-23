@@ -10,6 +10,6 @@ class TrackeeForm(forms.ModelForm):
         model = Trackee
         fields = ('url', 'target', 'mobile')
     
-    captcha = ReCaptchaField()
+#    captcha = ReCaptchaField()
 
 

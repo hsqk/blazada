@@ -5,15 +5,14 @@ import requests
 import bs4
 import os
 
-def underTargetPrice(url, alertPrice):
-    response = requests.get(url)
-    soup = bs4.BeautifulSoup(response.text, "html.parser")
-    priceTag = soup.find("span", { "class" : "price" } )
-    price = float(priceTag.text[4:])
-    if price < alertPrice:
-        return True
-    else:
-        return False
+
+import telegram
+token = '458733632:AAHzH3NtBMk2fvv4P0zb3Yr0qVUjnawew7k'
+bot = telegram.Bot(token=token)
+def botSend(chatId, text):
+    
+#"364600088"
+
 
 class Command(BaseCommand):
     help = 'Runs through all recorded trackees, scrapes website and checks if the target price has been reached, notifies mobile and deletes table entry if so, otherwise null'
@@ -27,8 +26,13 @@ class Command(BaseCommand):
         for i in range(len(allTrackees)):
             trackee = allTrackees[i]
             try:
-                if underTargetPrice(trackee.url, float(trackee.target)):
+                response = requests.get(url)
+                soup = bs4.BeautifulSoup(response.text, "html.parser")
+                priceTag = soup.find("span", { "class" : "price" } )
+                price = float(priceTag.text[4:])
+                if price < float(trackee.target):
                     self.stdout.write(trackee.url + " under target")
+                    bot.send_message(chat_id=chatId, text=text)
                     trackee.delete()
                 else:
                     self.stdout.write(trackee.url + " not under target")
