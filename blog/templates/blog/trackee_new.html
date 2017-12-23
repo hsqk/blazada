@@ -1,11 +1,41 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+
         <div>
-        <form method="POST" class="sale-form">{% csrf_token %}
-        {{ form.as_p }}
-        <div class="g-recaptcha" data-sitekey="6LcpCj4UAAAAADhQ3Tc5TA6zs7ReilkJ8hr0rAKS"></div>
-        <button type="submit" class="save btn btn-default">Notify me!</button>
+        <form method="POST" class="form-horizontal">{% csrf_token %}
+        {{ form.non_field_errors }}
+
+            <div class="form-group">
+                <label class="control-label col-sm-5" for="{{ form.url.id_for_label }}"> Product link </label>
+                <div class="col-sm-7">  {{ form.url }} </div>
+                {{ form.url.errors }}
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-5" for="{{ form.target.id_for_label }}"> Target price  </label>
+                <div class="col-sm-7">  {{ form.target }} </div>
+                {{ form.target.errors }}
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-5" for="{{ form.mobile.id_for_label }}"> Your mobile </label>
+                <div class="col-sm-7">  {{ form.mobile }} </div>
+                {{ form.mobile.errors }}
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <div class="g-recaptcha" data-sitekey="6LcpCj4UAAAAADhQ3Tc5TA6zs7ReilkJ8hr0rAKS"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-5 col-sm-9">
+                    <button type="submit" class="save btn btn-default">Notify me!</button>
+                </div>
+            </div>
+
         </form>
             {% if success == 1 %}
                     <p> Done! We'll notify you by WhatsApp/Telegram when {{ itemName }} has reached the price of ${{ target }} </p>
