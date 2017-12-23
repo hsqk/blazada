@@ -19,7 +19,7 @@ def trackee_new(request):
             trackee = form.save(commit=False)
             response = requests.get(trackee.url)
             soup = bs4.BeautifulSoup(response.text, "html.parser")
-            trackee.name = str(soup.find("h1", { "class" : "product-info-name" } ))
+            trackee.name = str.strip(soup.find("h1", { "class" : "product-info-name" } ).getText())
             tracker, created = Tracker.objects.get_or_create(mobile=trackee.mobile)
             trackee.tracker = tracker
             trackee.save()

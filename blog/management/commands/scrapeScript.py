@@ -32,7 +32,7 @@ class Command(BaseCommand):
                     self.stdout.write(trackee.url + " under target")
                     chatId = Tracker.objects.get(mobile=trackee.mobile).chatId
                     print(chatId)
-                    text = "Yo! " + trackee.name + " has reached the target price of " + str(trackee.target)
+                    text = "Yo! " + trackee.name + " has reached your target price of $" + str(trackee.target) + "\n \nGet it at " + trackee.url
                     bot.send_message(chat_id=chatId, text=text)
                     trackee.delete()
                 else:
