@@ -6,7 +6,6 @@ class Tracker(models.Model):
     mobile = PhoneNumberField(unique=True) #using imported phone number resolution library
     chatId = models.CharField(max_length=20, null=True)
     
-    
     def __str__(self):
         return str(self.mobile)
 
@@ -20,10 +19,6 @@ class Trackee(models.Model):
     mobile = PhoneNumberField() #using imported phone number resolution library
     createdDate = models.DateTimeField(default=timezone.now)
     tracker = models.ForeignKey(Tracker, on_delete = models.CASCADE, null=True)
-    
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-    
     
     def __str__(self):
         return self.url

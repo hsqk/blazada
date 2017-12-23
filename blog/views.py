@@ -20,7 +20,8 @@ def trackee_new(request):
             response = requests.get(trackee.url)
             soup = bs4.BeautifulSoup(response.text, "html.parser")
             trackee.name = str(soup.find("h1", { "class" : "product-info-name" } ))
-            trackee.tracker = Tracker.objects.create(mobile=trackee.mobile)
+            tracker, created = Tracker.objects.get_or_create(mobile=trackee.mobile)
+            trackee.tracker = tracker
             trackee.save()
             return render(request, 'blog/trackee_new.html', {'form': form, 'success': 1, 'itemName': trackee.name, 'target': form.cleaned_data['target'], })
     else:
