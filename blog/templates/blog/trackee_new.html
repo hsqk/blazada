@@ -40,6 +40,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
                     <div class="g-recaptcha" data-sitekey="6LcpCj4UAAAAADhQ3Tc5TA6zs7ReilkJ8hr0rAKS"></div>
+                    {{ form.captcha.errors }}
                 </div>
             </div>
 
@@ -57,7 +58,7 @@
 
             {% elif success is False %}
                 <div class="alert alert-warning">
-                    <strong>Oops.</strong> Something went wrong. Check the guide, or e-mail blazada[at]gmail(dot)com if the problem persists
+                    <strong>Oops.</strong> Something went wrong. Check the guide, or e-mail blazada17[at]gmail(dot)com if the problem persists
                 </div>
                 
             {% endif %}

@@ -24,7 +24,8 @@ def trackee_new(request):
                 tracker, created = Tracker.objects.get_or_create(mobile=trackee.mobile)
                 trackee.tracker = tracker
                 trackee.save()
-                return render(request, 'blog/trackee_new.html', {'form': form, 'success': True, 'itemName': trackee.name, 'target': form.cleaned_data['target'], })
+                clearedForm = TrackeeForm(initial={'mobile':trackee.mobile})
+                return render(request, 'blog/trackee_new.html', {'form': clearedForm, 'success': True, 'itemName': trackee.name, 'target': form.cleaned_data['target'], 'mobile':  trackee.mobile })
             except:
                 return render(request, 'blog/trackee_new.html', {'form': form, 'success': False, })
     else:
