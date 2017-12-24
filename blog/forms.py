@@ -14,6 +14,6 @@ class TrackeeForm(forms.ModelForm):
             'target': forms.NumberInput(attrs={'placeholder': 'e.g. 180', 'title': 'Exclude $ sign'}),
             'mobile': forms.TextInput(attrs={'placeholder': 'e.g. +65 96987636', 'title': 'Include + sign, country code'})
             }
-#    captcha = ReCaptchaField()
+    captcha = ReCaptchaField()
 
 
