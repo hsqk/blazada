@@ -42,7 +42,7 @@ def check(bot, update):
                 bot.send_message(chat_id=update.message.chat_id, text="Target price: " +  str(trackee.target) + "\n  Item: " + trackee.name)
     except Exception as error:
         if (repr(error))=="DoesNotExist('Tracker matching query does not exist.',)":
-            bot.send_message(chat_id=update.message.chat_id, text="You don't seem to be in our database. Try tracking something on the Blazada website and starting the bot again.")
+            bot.send_message(chat_id=update.message.chat_id, text="You don't seem to be in our database. Try tracking something on blazada.pythonanywhere.com and starting the bot again.")
         print(repr(error))
 
 def forgetMe(bot, update):
@@ -70,9 +70,20 @@ updater.start_polling()
 
 
 def echo(bot, update):
+    def say(text):
+        chat_id=update.message.chat_id
+        bot.send_message(chat_id=chat_id, text=text)
+    
+    text = update.message.text
     try:
-        if update.message.text=='1':
-            bot.send_message(chat_id=update.message.chat_id, text='2, buckle my shoe')
+        if text=='1':
+            say("2, buckle my shoe")
+        elif text=='Say my name':
+            say("!xobile")
+        elif ('please' in text) or ('Please' in text):
+            say("Oh what a polite dearie you are.")
+        elif text=='hi' or text=='Hi':
+            say("Salutations!")
     except Exception as error:
         print(repr(error))
 
@@ -89,7 +100,7 @@ def matchMobile(bot, update):
     except Exception as error:
         print(repr(error))
         if (repr(error))=="DoesNotExist('Tracker matching query does not exist.',)":
-            bot.send_message(chat_id=update.message.chat_id, text="Looks like you aren't tracking anything yet. Track something on blazada.com before starting the bot again!")
+            bot.send_message(chat_id=update.message.chat_id, text="Looks like you aren't tracking anything yet. Track something on blazada.pythonanywhere.com before starting the bot again!")
 
 echo_handler = MessageHandler(Filters.text, echo)
 dispatcher.add_handler(echo_handler)
