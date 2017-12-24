@@ -3,8 +3,9 @@
 <html>
     <head>
         <title>BLAZADA</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Allura|Cormorant+Garamond|Life+Savers|Parisienne|Sacramento|Tangerine" rel="stylesheet"> 
@@ -24,32 +25,102 @@
 
         <div class="content container">
             <div class='row'>
-            <div class = "col-md-12 centre_link_no_deco">
-                <a href="/">
-                <div class='header_title'>BLAZADA</div>
-                <div class='header_tagline'>gets you the best of lazada </div>
-                </a>
-                    
-            </div>
+
+                <div class="col-md-2"> </div>
+
+                <div class = "col-md-8">
+                    <a href="/">
+                    <div class='page-header'>blazada</div>
+                    </a>
+                </div>
+
+                <div class="col-md-2"> </div>
+
             </div>
         </div>
         
 
+        <div class="content container">  
+            <div class="row" id="navtabs">
+                <div class="col-md-2"> </div>
+                <div class="col-md-8">
+
+                    <ul class = "nav nav-tabs">
+                    <li class='active'> <a data-toggle="tab" href="#pricetracker"> price tracker </a> </li>
+                    <li> <a data-toggle="tab" href="#what"> what's this? </a> </li>
+                    <li> <a data-toggle="tab" href="#how"> how to use</a> </li>
+                    <li> <a data-toggle="tab" href="#other"> other questions </a> </li>
+                    </ul>
+
+                    <div class="tab-content">
+
+                      <div id="pricetracker" class="tab-pane fade in active">
+                        <div class="row"> </div>
+                        {% block content %}
+                        {% endblock %}
+                      </div>
+
+                      <div id="what" class="tab-pane fade">
+                        <p>Blazada does two things: </p>
+                        <ol>
+                            <li> Continuously checks the price of any Lazada item you'd like </li>
+                            <li> Notifies you via Telegram when it reaches the price you want </li>
+                        </ol>
+                        <p> If you're eyeing something on Lazada, but waiting for further discounts, Blazada saves you the trouble of having to manually check its price every day. Kinda helps you control your online shopping too &mdash; setting buy-at prices makes you spend only when it's value-for-money :]  </p>
+                      </div>
+                      
+                      <div id="how" class="tab-pane fade">
+                        <h3> Basic guide </h3>
+                        <ol>
+                            <li> Fill up price tracker form </li>
+                            <li> First-time users: start a chat with blazadaBot on Telegram </li>
+                            <p> That's it. </p>
+                        </ol>
+                        <h3> Detailed version </h3> 
+                        <ol>
+                            <li> Decide what you want to buy </li>
+                            <p> In this example, I'm eyeing this particular XiaoMi phone from the Mi Store </p>
+                            <li> Decide on your buy-at price </li>
+                            <p> This is totally up to you, but I read some reviews...and apparantly the price went as low as $149, so being me there's no way I'm buying it at $199. I'll set my buy-at price to $180. </p>
+                            <li> Use the price tracker form </p>
+                            <p> Fill it up!</p>
+                            <ul>
+                                <li> Product link: Copy and paste URL from the product page (e.g. https://www.lazada.sg/xiaomi-redmi-4x-3gb-32gb-gold-20499139.html?spm=a2o42.prod.0.0.18feea70Ul1BP0) </li>
+                                <li> Target price: Your buy-at price (e.g. 180). Don't include the $ sign.
+                                <li> Your mobile: The mobile number to receive your Telegram notification from. Include the country code, with the + (e.g. +65 96987636) </li>
+                            </ul>
+                            <p> Press the "Notify me!" button. A green confirmation message will be displayed below </p>
+                            <li> If this is your first time using Blazada: </li>
+                                <ul>
+                                    <li> AFTER using the price tracker as above, go to Telegram and search for blazadaBot </li>
+                                    <li> Open a conversation with it. Send "/start". Press the big button that appears to send your mobile number to the bot (we need this to confirm it's you). </li>
+                                    <li> That's it! Just keep the chat open and wait for your notification :] </li>
+                                </ul> 
+                        </ol>
+
+
+                      </div>
+
+                      <div id="other" class="tab-pane fade">
+                        <h3>Menu 2</h3>
+                        <p>Some content in menu 2.</p>
+                      </div>
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-2"> </div>
+            </div>
+        </div>
+
         <div class="content container">
             <div class="row">
 
-                <div class="col-md-2">
-                <ul class = "nav nav-tabs">
-                <li> <a data-toggle="tab" href="#"> 1 what is this </a> </li>
-                <li> <a data-toggle="tab" href="#"> 2 how to use </a> </li>
-                <li> <a data-toggle="tab" href="#"> 3 other questions  </a> </li>
-                </ul>
-                </div>
+                <div class="col-md-2"> </div>
 
                 <div class="col-md-8 body_text">
                 <hr>
-                {% block content %}
-                {% endblock %}
                 </div>
 
                 <div class="col-md-2"> </div>

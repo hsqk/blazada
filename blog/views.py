@@ -16,14 +16,17 @@ def trackee_new(request):
     if request.method == 'POST':
         form = TrackeeForm(request.POST)
         if form.is_valid():
-            trackee = form.save(commit=False)
-            response = requests.get(trackee.url)
-            soup = bs4.BeautifulSoup(response.text, "html.parser")
-            trackee.name = str.strip(soup.find("h1", { "class" : "product-info-name" } ).getText())
-            tracker, created = Tracker.objects.get_or_create(mobile=trackee.mobile)
-            trackee.tracker = tracker
-            trackee.save()
-            return render(request, 'blog/trackee_new.html', {'form': form, 'success': 1, 'itemName': trackee.name, 'target': form.cleaned_data['target'], })
+            try:
+                trackee = form.save(commit=False)
+                response = requests.get(trackee.url)
+                soup = bs4.BeautifulSoup(response.text, "html.parser")
+                trackee.name = str.strip(soup.find("h1", { "class" : "product-info-name" } ).getText())
+                tracker, created = Tracker.objects.get_or_create(mobile=trackee.mobile)
+                trackee.tracker = tracker
+                trackee.save()
+                return render(request, 'blog/trackee_new.html', {'form': form, 'success': True, 'itemName': trackee.name, 'target': form.cleaned_data['target'], })
+            except:
+                return render(request, 'blog/trackee_new.html', {'form': form, 'success': False, })
     else:
         form = TrackeeForm()
     return render(request, 'blog/trackee_new.html', {'form': form, 'success': 0})

@@ -2,26 +2,41 @@
 
 {% block content %}
 
+
         <div>
         <form method="POST" class="form-horizontal">{% csrf_token %}
         {{ form.non_field_errors }}
 
             <div class="form-group">
-                <label class="control-label col-sm-5" for="{{ form.url.id_for_label }}"> Product link </label>
-                <div class="col-sm-7">  {{ form.url }} </div>
-                {{ form.url.errors }}
+                &nbsp;
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-5" for="{{ form.target.id_for_label }}"> Target price  </label>
-                <div class="col-sm-7">  {{ form.target }} </div>
-                {{ form.target.errors }}
+                &nbsp;
             </div>
 
             <div class="form-group">
-                <label class="control-label col-sm-5" for="{{ form.mobile.id_for_label }}"> Your mobile </label>
-                <div class="col-sm-7">  {{ form.mobile }} </div>
-                {{ form.mobile.errors }}
+                &nbsp;
+            </div>
+
+            <div class="form-group">
+                &nbsp;
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="{{ form.url.id_for_label }}"> Product link </label>
+                <div class="col-sm-9">  {{ form.url }} {{ form.url.errors }} </div>
+                
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="{{ form.target.id_for_label }}"> Target price  </label>
+                <div class="col-sm-9">  {{ form.target }} {{ form.target.errors }} </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="{{ form.mobile.id_for_label }}"> Your mobile </label>
+                <div class="col-sm-9">  {{ form.mobile }} {{ form.mobile.errors }}</div>
             </div>
 
             <div class="form-group">
@@ -31,38 +46,24 @@
             </div>
 
             <div class="form-group">
-                <div class="col-sm-offset-5 col-sm-9">
+                <div class="col-sm-offset-4 col-sm-8">
                     <button type="submit" class="save btn btn-default">Notify me!</button>
                 </div>
             </div>
 
-        </form>
-            {% if success == 1 %}
-                    <p> Done! We'll notify you by WhatsApp/Telegram when {{ itemName }} has reached the price of ${{ target }} </p>
+            {% if success is True %}
+                <div class="alert alert-success">
+                    <strong>Done.</strong> BlazadaBot will notify you when your {{ itemName }} costs no more than ${{ target }}
+                </div>
+
+            {% elif success is False %}
+                <div class="alert alert-warning">
+                    <strong>Oops.</strong> Something went wrong. Check the guide, or e-mail blazada[at]gmail(dot)com if the problem persists
+                </div>
+                
             {% endif %}
 
+        </form>
         </div>
 {% endblock %}
 
-<!-- 
-    <table>
-    <tr>
-        <td>  Item number </td>
-        <td> Description </td>
-        <td> From </td>
-        <td> Price </td>
-        <td> Status </td>
-
-
-        <tr>
-            <td>{{ clothing.item_code }}</td>
-            <td> {{ clothing.description }} </td>
-            <td> {{ clothing.owner }} </td>
-            <td> {{ clothing.price }} </td>
-            <td> {% if clothing.sold %} SOLD {% endif %} </td>
-        </tr>
-
-    </table>
-
-
--->
