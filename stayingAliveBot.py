@@ -39,7 +39,7 @@ def check(bot, update):
             bot.send_message(chat_id=update.message.chat_id, text='No items being tracked. Use the Blazada website to track some, if you\'d like')
         else:
             for trackee in trackees:
-                bot.send_message(chat_id=update.message.chat_id, text="Target price: " +  str(trackee.target) + "\n  Item: " + trackee.name)
+                bot.send_message(chat_id=update.message.chat_id, text="Target price: $" +  str(trackee.target) + "\n  Item: " + trackee.name)
     except Exception as error:
         if (repr(error))=="DoesNotExist('Tracker matching query does not exist.',)":
             bot.send_message(chat_id=update.message.chat_id, text="You don't seem to be in our database. Try tracking something on blazada.pythonanywhere.com and starting the bot again.")
