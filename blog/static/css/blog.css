@@ -72,6 +72,12 @@ body {
     
 }
 
+.control-label {
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+
+}
 /*
 
     font-family: 'Life Savers', cursive;
