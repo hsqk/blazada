@@ -31,3 +31,5 @@ def trackee_new(request):
     else:
         form = TrackeeForm()
     return render(request, 'blog/trackee_new.html', {'form': form, 'success': 0})
+
+
