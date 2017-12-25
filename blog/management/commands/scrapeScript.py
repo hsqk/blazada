@@ -6,7 +6,7 @@ import bs4
 import os
 import sys
 appDir = os.getcwd()
-librariesPath = appDir + '/blog/libraries'
+librariesPath = appDir + '/blazada/blog/libraries'
 sys.path.append(librariesPath)
 print(librariesPath)
 print(sys.path)
