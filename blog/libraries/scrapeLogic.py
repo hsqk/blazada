@@ -131,3 +131,5 @@ def scrape_all(url, alertPrice, getName, getIsPriceUnder):
             return scrape_Taobao(url, alertPrice, getName, getIsPriceUnder)
         else:
             return scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder)
+
+
