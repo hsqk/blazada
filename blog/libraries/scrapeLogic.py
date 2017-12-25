@@ -52,8 +52,7 @@ def scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder):
         name = str.strip(soup.find("h3", { "class" : "tb-main-title" } ).getText())
         return name
     elif getIsPriceUnder and (not(getName)):
-        if price <= alertmport xvfbwrapper as x
-        x.Xvfb().start()Price:
+        if price <= alertPrice:
             return True
         else:
             return False
