@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+DEV = False
+
 import requests
 import bs4
 import dryscrape
@@ -36,7 +38,34 @@ url = "https://www.lazada.sg/xiaomi-redmi-4a-32gb-dual-sim-grey-export-17598693.
 """
 
 
+def scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder):
+    session = dryscrape.Session()
+    session.visit(url)
+    response = session.body()
+    soup = bs4.BeautifulSoup(response, "html.parser")
+    try:
+        price = float(soup.find(id='J_PromoPriceNum').getText())
+    except AttributeError as error:
+        price = float(soup.find('input', {'name': 'current_price'}).get('value'))
+    #print(price)
+    if getName and (not getIsPriceUnder):
+        name = str.strip(soup.find("h3", { "class" : "tb-main-title" } ).getText())
+        return name
+    elif getIsPriceUnder and (not(getName)):
+        if price <= alertmport xvfbwrapper as x
+        x.Xvfb().start()Price:
+            return True
+        else:
+            return False
+    elif getName and getIsPriceUnder:
+        if price <= alertPrice:
+            return (name, True)
+        else:
+            return (name, False)
+
+
 def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
+    dryscrape.start_xvfb()
     session = dryscrape.Session()
     session.visit(url)
     response = session.body()
@@ -99,4 +128,7 @@ def scrape_all(url, alertPrice, getName, getIsPriceUnder):
     elif "qoo10.sg" in url:
         return scrape_Qoo10(url, alertPrice, getName, getIsPriceUnder)
     elif "taobao.com" in url:
-        return scrape_Taobao(url, alertPrice, getName, getIsPriceUnder)
+        if DEV == False:
+            return scrape_Taobao(url, alertPrice, getName, getIsPriceUnder)
+        else:
+            return scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder)
