@@ -13,6 +13,8 @@ import sys
 appDir = os.getcwd()
 librariesPath = appDir + '/blog/libraries'
 sys.path.append(librariesPath)
+print(librariesPath)
+print(sys.path)
 import scrapeLogic
 
 # Create your views here.
