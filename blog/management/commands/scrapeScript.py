@@ -4,6 +4,11 @@ from blog.models import Trackee, Tracker
 import requests
 import bs4
 import os
+import sys
+appDir = os.getcwd()
+librariesPath = appDir + '/blog/libraries'
+sys.path.append(librariesPath)
+import scrapeLogic
 
 
 import telegram
@@ -24,14 +29,13 @@ class Command(BaseCommand):
         for i in range(len(allTrackees)):
             trackee = allTrackees[i]
             try:
-                response = requests.get(trackee.url)
-                soup = bs4.BeautifulSoup(response.text, "html.parser")
-                priceTag = soup.find("span", { "class" : "price" } )
-                price = float(priceTag.text[4:])
-                if price < float(trackee.target):
+                url = trackee.url
+                alertPrice = trackee.target
+                priceUnder = scrapeLogic.scrape_all(url, alertPrice, False, True)
+                if priceUnder:
                     self.stdout.write(trackee.url + " under target")
                     chatId = Tracker.objects.get(mobile=trackee.mobile).chatId
-                    print(chatId)
+                    #print(chatId)
                     text = "Yo! " + trackee.name + " has reached your target price of $" + str(trackee.target) + "\n \nGet it at " + trackee.url
                     bot.send_message(chat_id=chatId, text=text)
                     trackee.delete()
@@ -40,5 +44,9 @@ class Command(BaseCommand):
             except Exception as error:
                 self.stdout.write(repr(error))
                 self.stdout.write(trackee.url + " not valid")
+                chatId = Tracker.objects.get(mobile=trackee.mobile).chatId
+                #print(chatId)
+                text = "Um. The URL for " + trackee.name + " seems to have changed. You'll have to find the new product page and track it with the blazada website again. Sorry about that. (For reference, the URL you entered was " + trackee.url + " )"
+                bot.send_message(chat_id=chatId, text=text)
                 trackee.delete()
 

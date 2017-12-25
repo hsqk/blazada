@@ -8,6 +8,12 @@ import re, math
 
 import requests
 import bs4
+import os
+import sys
+appDir = os.getcwd()
+librariesPath = appDir + '/blog/libraries'
+sys.path.append(librariesPath)
+import scrapeLogic
 
 # Create your views here.
 
@@ -18,9 +24,9 @@ def trackee_new(request):
         if form.is_valid():
             try:
                 trackee = form.save(commit=False)
-                response = requests.get(trackee.url)
-                soup = bs4.BeautifulSoup(response.text, "html.parser")
-                trackee.name = str.strip(soup.find("h1", { "class" : "product-info-name" } ).getText())
+                url = trackee.url
+                print(url)
+                trackee.name = scrapeLogic.scrape_all(url, 0, True, False)
                 tracker, created = Tracker.objects.get_or_create(mobile=trackee.mobile)
                 trackee.tracker = tracker
                 trackee.save()
