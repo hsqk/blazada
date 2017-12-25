@@ -66,14 +66,17 @@ def scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder):
 def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
     dryscrape.start_xvfb()
     session = dryscrape.Session()
+    print('1')
     session.visit(url)
+    print('2')
     response = session.body()
     soup = bs4.BeautifulSoup(response, "html.parser")
+    print('hi')
     try:
         price = float(soup.find(id='J_PromoPriceNum').getText())
     except AttributeError as error:
         price = float(soup.find('input', {'name': 'current_price'}).get('value'))
-    #print(price)
+    print(price)
     if getName and (not getIsPriceUnder):
         name = str.strip(soup.find("h3", { "class" : "tb-main-title" } ).getText())
         return name
