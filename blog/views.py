@@ -1,3 +1,4 @@
+DEV = False
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -11,7 +12,10 @@ import bs4
 import os
 import sys
 appDir = os.getcwd()
-librariesPath = appDir + '/blazada/blog/libraries'
+if DEV == False:
+    librariesPath = appDir + '/blazada/blog/libraries'
+else:
+    librariesPath = appDir + '/blog/libraries'
 sys.path.append(librariesPath)
 print(librariesPath)
 print(sys.path)
@@ -34,7 +38,8 @@ def trackee_new(request):
                 trackee.save()
                 clearedForm = TrackeeForm(initial={'mobile':trackee.mobile})
                 return render(request, 'blog/trackee_new.html', {'form': clearedForm, 'success': True, 'itemName': trackee.name, 'target': form.cleaned_data['target'], 'mobile':  trackee.mobile })
-            except:
+            except Exception as error:
+                print(repr(error))
                 return render(request, 'blog/trackee_new.html', {'form': form, 'success': False, })
     else:
         form = TrackeeForm()

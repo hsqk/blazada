@@ -1,3 +1,5 @@
+DEV = False
+
 from django.core.management.base import BaseCommand, CommandError
 from blog.models import Trackee, Tracker
 
@@ -6,7 +8,10 @@ import bs4
 import os
 import sys
 appDir = os.getcwd()
-librariesPath = appDir + '/blazada/blog/libraries'
+if DEV == False:
+    librariesPath = appDir + '/blazada/blog/libraries'
+else:
+    librariesPath = appDir + '/blog/libraries'
 sys.path.append(librariesPath)
 print(librariesPath)
 print(sys.path)
