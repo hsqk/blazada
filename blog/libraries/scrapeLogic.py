@@ -78,6 +78,7 @@ def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
     try:
         # we can now start Firefox and it will run inside the virtual display
         print(1)
+        print(os.environ['DISPLAY'])
         browser = webdriver.Firefox()
         print(2)
         try:
