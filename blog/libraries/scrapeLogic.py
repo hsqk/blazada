@@ -77,7 +77,9 @@ def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
     display.start()
     try:
         # we can now start Firefox and it will run inside the virtual display
+        print(1)
         browser = webdriver.Firefox()
+        print(2)
         try:
             price = float(browser.find_element_by_id('J_PromoPriceNum').text)
         except Exception as error:
