@@ -85,25 +85,21 @@ def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
         except Exception as error:
             price = float(browser.find_element_by_name('current_price').get_property('value'))
         print(price)
+        name = str.strip(browser.find_element_by_class_name("tb-main-title").text)
     except Exception as error:
         print(repr(error))
-    if getName and (not getIsPriceUnder):
-        name = str.strip(browser.find_element_by_class_name("tb-main-title").text)
+    finally:
         #tidy-up
         browser.quit()
         display.stop() # ignore any output from this.
+    if getName and (not getIsPriceUnder):
         return name
-    #tidy-up
     elif getIsPriceUnder and (not(getName)):
-        browser.quit()
-        display.stop() # ignore any output from this.
         if price <= alertPrice:
             return True
         else:
             return False
     elif getName and getIsPriceUnder:
-        browser.quit()
-        display.stop() # ignore any output from this.
         if price <= alertPrice:
             return (name, True)
         else:
