@@ -47,6 +47,46 @@ url = "https://www.lazada.sg/xiaomi-redmi-4a-32gb-dual-sim-grey-export-17598693.
 """
 
 
+def scrape_Taobao_name(url, alertPrice):
+    response = requests.get(url)
+    soup = bs4.BeautifulSoup(response.text, "html.parser")
+    name = str.strip(soup.find("h3", { "class" : "tb-main-title" } ).getText())
+    return name
+
+def scrape_Taobao_price(url, alertPrice):
+    display = Display(visible=0, size=(800, 600))
+    display.start()
+    try:
+        # we can now start Firefox and it will run inside the virtual display
+        print(1)
+        print(os.environ['DISPLAY'])
+        browser = webdriver.Firefox()
+        print(2)
+        try:
+            price = float(browser.find_element_by_id('J_PromoPriceNum').text)
+        except Exception as error:
+            price = float(browser.find_element_by_name('current_price').get_property('value'))
+        print(price)
+    except Exception as error:
+        print(repr(error))
+    finally:
+        #tidy-up
+        browser.quit()
+        display.stop() # ignore any output from this.
+    if price <= alertPrice:
+        return True
+    else:
+        return False
+
+
+def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
+    if getName:
+        return scrape_Taobao_name
+    elif getIsPriceUnder:
+        return scrape_Taobao_price
+
+
+
 def scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder):
     session = dryscrape.Session()
     session.visit(url)
@@ -71,7 +111,7 @@ def scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder):
         else:
             return (name, False)
 
-
+"""
 def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
     display = Display(visible=0, size=(800, 600))
     display.start()
@@ -105,6 +145,8 @@ def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
             return (name, True)
         else:
             return (name, False)
+"""
+
 
 
 def scrape_Qoo10(url, alertPrice, getName, getIsPriceUnder):
