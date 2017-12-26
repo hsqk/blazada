@@ -48,3 +48,21 @@ JavaScript error: https://login.taobao.com/jump?target=https://www.tmall.com, li
 (/usr/lib/firefox/firefox:18859): dconf-WARNING **: Unable to open /var/lib/menu-xdg/dconf/profile/user: Permission denied
 JavaScript error: https://login.taobao.com/jump?target=https://www.tmall.com, line 26: SyntaxError: expected expression, got '<'
 1514261599491	Marionette	DEBUG	Received DOM event "pageshow" for "https://item.taobao.com/item.htm?spm=a21wu.241046-sg.4691948847.21.62ab7c25FvwYS6&scm=1007.15423.84311.100200300000005&id=556641227680&pvid=c06bb195-261c-43a9-bcae-b559c9b1d54c"
+1514272433273	geckodriver	INFO	geckodriver 0.19.1
+1514272433289	geckodriver	INFO	Listening on 127.0.0.1:33434
+1514272434409	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.sLGNfoQ9qRo9"
+1514272434926	Marionette	INFO	Enabled via --marionette
+1514272436104	Marionette	INFO	Listening on port 45525
+1514272436128	Marionette	WARN	TLS certificate errors will be ignored for this session
+1514272436188	Marionette	DEBUG	Register listener.js for window 2147483649
+1514272436267	addons.xpi	WARN	Exception running bootstrap method shutdown on activity-stream@mozilla.org: [Exception... "Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIObserverService.removeObserver]"  nsresult: "0x80004005 (NS_ERROR_FAILURE)"  location: "JS frame :: resource://activity-stream/lib/SnippetsFeed.jsm :: uninit :: line 123"  data: no] Stack trace: uninit()@resource://activity-stream/lib/SnippetsFeed.jsm:123 < onAction()@resource://activity-stream/lib/SnippetsFeed.jsm:138 < _middleware/</<()@resource://activity-stream/lib/Store.jsm:52 < Store/this[method]()@resource://activity-stream/lib/Store.jsm:31 < uninit()@resource://activity-stream/lib/Store.jsm:151 < uninit()@resource://activity-stream/lib/ActivityStream.jsm:266 < uninit()@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///usr/lib/firefox/browser/features/activity-stream@mozilla.org.xpi!/bootstrap.js:80 < shutdown()@resource://gre/modules/addons/XPIProvider.jsm -> jar:file:///usr/lib/firefox/browser/features/activity-stream@mozilla.org.xpi!/bootstrap.js:196 < callBootstrapMethod()@resource://gre/modules/addons/XPIProvider.jsm:4509 < observe()@resource://gre/modules/addons/XPIProvider.jsm:2281 < GeckoDriver.prototype.quit()@driver.js:3307 < despatch()@server.js:553 < execute()@server.js:527 < onPacket/<()@server.js:502 < onPacket()@server.js:501 < _onJSONObjectReady/<()@transport.js:501
+[Child 24832, Chrome_ChildThread] WARNING: pipe error (31): Connection reset by peer: file /build/firefox-bfYN6l/firefox-57.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 24832, Chrome_ChildThread] WARNING: pipe error (16): Connection reset by peer: file /build/firefox-bfYN6l/firefox-57.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 24832, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-bfYN6l/firefox-57.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1514272567714	geckodriver	INFO	geckodriver 0.19.1
+1514272567728	geckodriver	INFO	Listening on 127.0.0.1:43429
+1514272568830	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.nRR19486rk5R"
+1514272569315	Marionette	INFO	Enabled via --marionette
+1514272570454	Marionette	INFO	Listening on port 42721
+1514272570552	Marionette	WARN	TLS certificate errors will be ignored for this session
+1514272570625	Marionette	DEBUG	Register listener.js for window 2147483649

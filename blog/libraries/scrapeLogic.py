@@ -61,9 +61,10 @@ def scrape_Taobao_price(url, alertPrice):
         print(1)
         print(os.environ['DISPLAY'])
         browser = webdriver.Firefox()
+        browser.get(url)
         print(2)
         try:
-            price = float(browser.find_element_by_class('tm-price').text)
+            price = float(browser.find_element_by_id('J_PromoPriceNum').text)
         except Exception as error:
             price = float(browser.find_element_by_name('current_price').get_property('value'))
         print(price)
