@@ -81,9 +81,9 @@ def scrape_Taobao_price(url, alertPrice):
 
 def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
     if getName:
-        return scrape_Taobao_name
+        return scrape_Taobao_name(url, alertPrice)
     elif getIsPriceUnder:
-        return scrape_Taobao_price
+        return scrape_Taobao_price(url, alertPrice)
 
 
 
