@@ -10,7 +10,7 @@ import re
 from pyvirtualdisplay import Display
 from selenium import webdriver
 
-if DEV == False:
+if DEV == True:
     geckoPath = "/home/huang/grow/dj/blazada/drivers"
 else:
     geckoPath = "/home/blazada/blazada/drivers"
