@@ -7,6 +7,15 @@ import bs4
 import dryscrape
 import os
 import re
+from pyvirtualdisplay import Display
+from selenium import webdriver
+
+if DEV == False:
+    geckoPath = "/home/huang/grow/dj/blazada/drivers"
+else:
+    geckoPath = "/home/blazada/blazada/drivers"
+
+os.environ["PATH"] += os.pathsep + geckoPath
 
 def scrape_Lazada(url, alertPrice, getName, getIsPriceUnder):
     response = requests.get(url)
@@ -64,28 +73,33 @@ def scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder):
 
 
 def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
-    dryscrape.start_xvfb()
-    session = dryscrape.Session()
-    print('1')
-    session.visit(url)
-    print('2')
-    response = session.body()
-    soup = bs4.BeautifulSoup(response, "html.parser")
-    print('hi')
+    display = Display(visible=0, size=(800, 600))
+    display.start()
     try:
-        price = float(soup.find(id='J_PromoPriceNum').getText())
-    except AttributeError as error:
-        price = float(soup.find('input', {'name': 'current_price'}).get('value'))
-    print(price)
+        # we can now start Firefox and it will run inside the virtual display
+        browser = webdriver.Firefox()
+        try:
+            price = float(browser.find_element_by_id('J_PromoPriceNum').text)
+        except Exception as error:
+            price = float(browser.find_element_by_name('current_price').get_property('value'))
+        print(price)
     if getName and (not getIsPriceUnder):
-        name = str.strip(soup.find("h3", { "class" : "tb-main-title" } ).getText())
+        name = str.strip(browser.find_element_by_class_name("tb-main-title").text)
+        #tidy-up
+        browser.quit()
+        display.stop() # ignore any output from this.
         return name
+    #tidy-up
     elif getIsPriceUnder and (not(getName)):
+        browser.quit()
+        display.stop() # ignore any output from this.
         if price <= alertPrice:
             return True
         else:
             return False
     elif getName and getIsPriceUnder:
+        browser.quit()
+        display.stop() # ignore any output from this.
         if price <= alertPrice:
             return (name, True)
         else:

@@ -1,0 +1,50 @@
+1514260229345	geckodriver	INFO	geckodriver 0.19.1
+1514260229364	geckodriver	INFO	Listening on 127.0.0.1:37372
+1514260230492	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.eSm6EluuV3NY"
+1514260231022	Marionette	INFO	Enabled via --marionette
+1514260232176	Marionette	INFO	Listening on port 37178
+1514260232234	Marionette	WARN	TLS certificate errors will be ignored for this session
+1514260232295	Marionette	DEBUG	Register listener.js for window 2147483649
+1514260408082	geckodriver	INFO	geckodriver 0.19.1
+1514260408088	geckodriver	INFO	Listening on 127.0.0.1:47263
+1514260409216	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.XK6w618geUJ7"
+1514260409686	Marionette	INFO	Enabled via --marionette
+1514260410723	Marionette	INFO	Listening on port 46547
+1514260410823	Marionette	WARN	TLS certificate errors will be ignored for this session
+1514260410880	Marionette	DEBUG	Register listener.js for window 2147483649
+
+(/usr/lib/firefox/firefox:17920): Gdk-WARNING **: /usr/lib/firefox/firefox: Fatal IO error 11 (Resource temporarily unavailable) on X server :1005.
+
+1514260653248	geckodriver	INFO	geckodriver 0.19.1
+1514260653255	geckodriver	INFO	Listening on 127.0.0.1:43745
+1514260654387	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.SV33DMGGIxFL"
+1514260654831	Marionette	INFO	Enabled via --marionette
+1514260655848	Marionette	INFO	Listening on port 38261
+1514260655904	Marionette	WARN	TLS certificate errors will be ignored for this session
+1514260655961	Marionette	DEBUG	Register listener.js for window 2147483649
+1514260686475	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1514260688040	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1514260688041	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1514260689141	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://item.taobao.com/item.htm?id=558402991465&ali_trackid=2:mm_56305873_13364096_53086045:1514212636_359_46994810&clk1=7cc148f29c0a0c85a88f580f56ddb47c&upsid=7cc148f29c0a0c85a88f580f56ddb47c"
+
+(/usr/lib/firefox/firefox:18148): dconf-WARNING **: Unable to open /var/lib/menu-xdg/dconf/profile/user: Permission denied
+JavaScript warning: https://g.alicdn.com/kissy/k/1.4.14/??event-min.js,anim-min.js,anim/base-min.js,anim/timer-min.js,anim/transition-min.js,base-min.js,attribute-min.js,node-min.js,cookie-min.js,overlay-min.js,component/container-min.js,component/control-min.js,component/manager-min.js,xtemplate/runtime-min.js,component/extension/shim-min.js,component/extension/align-min.js,component/extension/content-xtpl-min.js,component/extension/content-render-min.js,xtemplate-min.js,xtemplate/compiler-min.js, line 73: Using //@ to indicate sourceURL pragmas is deprecated. Use //# instead
+JavaScript warning: https://g.alicdn.com/kissy/k/1.4.14/??event-min.js,anim-min.js,anim/base-min.js,anim/timer-min.js,anim/transition-min.js,base-min.js,attribute-min.js,node-min.js,cookie-min.js,overlay-min.js,component/container-min.js,component/control-min.js,component/manager-min.js,xtemplate/runtime-min.js,component/extension/shim-min.js,component/extension/align-min.js,component/extension/content-xtpl-min.js,component/extension/content-render-min.js,xtemplate-min.js,xtemplate/compiler-min.js, line 87: Using //@ to indicate sourceURL pragmas is deprecated. Use //# instead
+JavaScript error: https://g.alicdn.com/shop/wangpu/1.9.4/??hdc-bridge-min.js?t=20140523.js, line 1: TypeError: window.Light is undefined
+JavaScript error: https://login.taobao.com/jump?target=https://www.tmall.com, line 26: SyntaxError: expected expression, got '<'
+1514260692455	Marionette	DEBUG	Received DOM event "pageshow" for "https://item.taobao.com/item.htm?id=558402991465&ali_trackid=2:mm_56305873_13364096_53086045:1514212636_359_46994810&clk1=7cc148f29c0a0c85a88f580f56ddb47c&upsid=7cc148f29c0a0c85a88f580f56ddb47c"
+1514261586342	geckodriver	INFO	geckodriver 0.19.1
+1514261586359	geckodriver	INFO	Listening on 127.0.0.1:35372
+1514261587487	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.lIf1jHvjCk9F"
+1514261587945	Marionette	INFO	Enabled via --marionette
+1514261589036	Marionette	INFO	Listening on port 45349
+1514261589104	Marionette	WARN	TLS certificate errors will be ignored for this session
+1514261589165	Marionette	DEBUG	Register listener.js for window 2147483649
+1514261594546	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1514261596223	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1514261596224	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1514261596831	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://item.taobao.com/item.htm?spm=a21wu.241046-sg.4691948847.21.62ab7c25FvwYS6&scm=1007.15423.84311.100200300000005&id=556641227680&pvid=c06bb195-261c-43a9-bcae-b559c9b1d54c"
+
+(/usr/lib/firefox/firefox:18859): dconf-WARNING **: Unable to open /var/lib/menu-xdg/dconf/profile/user: Permission denied
+JavaScript error: https://login.taobao.com/jump?target=https://www.tmall.com, line 26: SyntaxError: expected expression, got '<'
+1514261599491	Marionette	DEBUG	Received DOM event "pageshow" for "https://item.taobao.com/item.htm?spm=a21wu.241046-sg.4691948847.21.62ab7c25FvwYS6&scm=1007.15423.84311.100200300000005&id=556641227680&pvid=c06bb195-261c-43a9-bcae-b559c9b1d54c"
