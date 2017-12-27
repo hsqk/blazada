@@ -7,7 +7,7 @@ https://item.taobao.com/item.htm?id=558402991465
 https://item.taobao.com/item.htm?id=558402991465&ali_trackid=2:mm_56305873_13364096_53086045:1514212636_359_46994810&clk1=7cc148f29c0a0c85a88f580f56ddb47c&upsid=7cc148f29c0a0c85a88f580f56ddb47c
 
 url = 'https://item.taobao.com/item.htm?id=558402991465&ali_trackid=2:mm_56305873_13364096_53086045:1514212636_359_46994810&clk1=7cc148f29c0a0c85a88f580f56ddb47c&upsid=7cc148f29c0a0c85a88f580f56ddb47c'
-
+39
 startCutAtIndex = url.index('id=') + 3
 currentIndex = startCutAtIndex
 itemId = ''
@@ -27,6 +27,9 @@ if len(promoData) != 0:
 
 
 url = 'https://item.taobao.com/item.htm?id=558402991465&ali_trackid=2:mm_56305873_13364096_53086045:1514212636_359_46994810&clk1=7cc148f29c0a0c85a88f580f56ddb47c&upsid=7cc148f29c0a0c85a88f580f56ddb47c'
+
+url = "https://item.taobao.com/item.htm?spm=a21wu.241046-sg.4691948847.21.62ab7c25FvwYS6&scm=1007.15423.84311.100200300000005&id=556641227680&pvid=c06bb195-261c-43a9-bcae-b559c9b1d54c"
+
 startCutAtIndex = url.index('id=') + 3
 print('startCut',startCutAtIndex)
 currentIndex = startCutAtIndex

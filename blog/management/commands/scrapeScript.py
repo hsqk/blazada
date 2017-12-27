@@ -53,7 +53,7 @@ class Command(BaseCommand):
                 self.stdout.write(trackee.url + " not valid")
                 chatId = Tracker.objects.get(mobile=trackee.mobile).chatId
                 #print(chatId)
-                text = "Um. The URL for " + trackee.name + " seems to have changed. You'll have to find the new product page and track it with the blazada website again. Sorry about that. (For reference, the URL you entered was " + trackee.url + " )"
+                text = "Um. The URL for " + trackee.name + " seems to have changed. You'll have to find the new product page and track it with the blazada website again. Sorry about that. (For reference, the URL you entered was " + trackee.url + " . If the URL still seems fine, it's probably a bug with the code. Apologies! Tell us and we'll try to fix it...)"
                 bot.send_message(chat_id=chatId, text=text)
                 trackee.delete()
 

@@ -60,19 +60,17 @@ def scrape_Taobao_name(url, alertPrice):
 
 def scrape_Taobao_price(url, alertPrice):
     startCutAtIndex = url.index('id=') + 3
-    print('startCut',startCutAtIndex)
     currentIndex = startCutAtIndex
     itemId = ''
     urlLen = len(url)
     while currentIndex != urlLen and url[currentIndex] != '&':
         itemId += url[currentIndex]
         currentIndex += 1
-        print(itemId)
     #endwhile
     queryUrl = 'https://detailskip.taobao.com/service/getData/1/p1/item/detail/sib.htm?itemId=' + itemId + '&modules=price,xmpPromotion'
     response = requests.get(queryUrl, headers={'referer': 'https://item.taobao.com/item.htm?id=558402991465'})
     jsonDict = response.json()
-    price = jsonDict['data']['price'] #normal price
+    price = float(jsonDict['data']['price']) #normal price
     promoData = jsonDict['data']['promotion']['promoData']
     if len(promoData) != 0:
         promoDataList = [i for i in promoData.values()][-1]
