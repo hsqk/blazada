@@ -2,20 +2,25 @@
 
 DEV = False
 
+import json
 import requests
 import bs4
-import dryscrape
 import os
-import re
-from pyvirtualdisplay import Display
-from selenium import webdriver
+
+
+if DEV == True:
+    import dryscrape # for 1 method of scraping taobao, doesnt work without gui
+    import re
+    from pyvirtualdisplay import Display # for scraping taobao by launching ff17, doesnt work on PA because it browser thinks page finished loading before promo price is gotten, for some reason, probably because sel2 and not sel3. see screenshot.
+    from selenium import webdriver
+
 
 if DEV == True:
     geckoPath = "/home/huang/grow/dj/blazada/drivers"
 else:
     geckoPath = "/home/blazada/blazada/drivers"
 
-os.environ["PATH"] += os.pathsep + geckoPath
+os.environ["PATH"] += os.pathsep + geckoPath # not used on PA server since firefox 17 no gecko lol
 
 def scrape_Lazada(url, alertPrice, getName, getIsPriceUnder):
     response = requests.get(url)
@@ -54,6 +59,62 @@ def scrape_Taobao_name(url, alertPrice):
     return name
 
 def scrape_Taobao_price(url, alertPrice):
+    startCutAtIndex = url.index('id=') + 3
+    currentIndex = startCutAtIndex
+    itemId = ''
+    urlLen = len(url)
+    while currentIndex != urlLen and url[currentIndex] != '&':
+        itemId += url[currentIndex]
+    #endwhile
+    queryUrl = 'https://detailskip.taobao.com/service/getData/1/p1/item/detail/sib.htm?itemId=' + itemId + '&modules=price,xmpPromotion'
+    response = requests.get(url_3, headers={'referer': 'https://item.taobao.com/item.htm?id=558402991465'})
+    jsonDict = response.json()
+    price = jsonDict['data']['price'] #normal price
+    promoData = jsonDict['data']['promotion']['promoData']
+    if len(promoData) != 0:
+        promoDataList = [i for i in promoData.values()][-1]
+        promoPrice = promoData[0]['price']
+        price = promoPrice # overwrite normal price
+    if price <= alertPrice:
+        return True
+    else:
+        return False
+
+def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
+    if getName:
+        return scrape_Taobao_name(url, alertPrice)
+    elif getIsPriceUnder:
+        return scrape_Taobao_price(url, alertPrice)
+
+
+if DEV == True:
+    def scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder):
+        session = dryscrape.Session()
+        session.visit(url)
+        response = session.body()
+        soup = bs4.BeautifulSoup(response, "html.parser")
+        try:
+            price = float(soup.find(id='J_PromoPriceNum').getText())
+        except AttributeError as error:
+            price = float(soup.find('input', {'name': 'current_price'}).get('value'))
+        #print(price)
+        if getName and (not getIsPriceUnder):
+            name = str.strip(soup.find("h3", { "class" : "tb-main-title" } ).getText())
+            return name
+        elif getIsPriceUnder and (not(getName)):
+            if price <= alertPrice:
+                return True
+            else:
+                return False
+        elif getName and getIsPriceUnder:
+            if price <= alertPrice:
+                return (name, True)
+            else:
+                return (name, False)
+
+"""
+#doesn't work on PA, probably sth to do with sel2 instead of sel3
+def scrape_Taobao_price(url, alertPrice):
     display = Display(visible=0, size=(800, 600))
     display.start()
     try:
@@ -81,41 +142,9 @@ def scrape_Taobao_price(url, alertPrice):
         return True
     else:
         return False
-
-
-def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
-    if getName:
-        return scrape_Taobao_name(url, alertPrice)
-    elif getIsPriceUnder:
-        return scrape_Taobao_price(url, alertPrice)
-
-
-
-def scrape_Taobao_dev(url, alertPrice, getName, getIsPriceUnder):
-    session = dryscrape.Session()
-    session.visit(url)
-    response = session.body()
-    soup = bs4.BeautifulSoup(response, "html.parser")
-    try:
-        price = float(soup.find(id='J_PromoPriceNum').getText())
-    except AttributeError as error:
-        price = float(soup.find('input', {'name': 'current_price'}).get('value'))
-    #print(price)
-    if getName and (not getIsPriceUnder):
-        name = str.strip(soup.find("h3", { "class" : "tb-main-title" } ).getText())
-        return name
-    elif getIsPriceUnder and (not(getName)):
-        if price <= alertPrice:
-            return True
-        else:
-            return False
-    elif getName and getIsPriceUnder:
-        if price <= alertPrice:
-            return (name, True)
-        else:
-            return (name, False)
-
 """
+"""
+#doesnt work on PA
 def scrape_Taobao(url, alertPrice, getName, getIsPriceUnder):
     display = Display(visible=0, size=(800, 600))
     display.start()

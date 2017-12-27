@@ -1,7 +1,46 @@
 import json, requests
 import bs4
 
+
+https://item.taobao.com/item.htm?id=558402991465
+
+https://item.taobao.com/item.htm?id=558402991465&ali_trackid=2:mm_56305873_13364096_53086045:1514212636_359_46994810&clk1=7cc148f29c0a0c85a88f580f56ddb47c&upsid=7cc148f29c0a0c85a88f580f56ddb47c
+
+url = 'https://item.taobao.com/item.htm?id=558402991465&ali_trackid=2:mm_56305873_13364096_53086045:1514212636_359_46994810&clk1=7cc148f29c0a0c85a88f580f56ddb47c&upsid=7cc148f29c0a0c85a88f580f56ddb47c'
+
+startCutAtIndex = url.index('id=') + 3
+currentIndex = startCutAtIndex
+itemId = ''
+urlLen = len(url)
+while currentIndex != urlLen and url[currentIndex] != '&':
+    itemId += url[currentIndex]
+
+queryUrl = 'https://detailskip.taobao.com/service/getData/1/p1/item/detail/sib.htm?itemId=' + itemId + '&modules=price,xmpPromotion''
+response = requests.get(url_3, headers={'referer': 'https://item.taobao.com/item.htm?id=558402991465'})
+jsonDict = response.json()
+price = jsonDict['data']['price'] #normal price
+promoData = jsonDict['data']['promotion']['promoData']
+if len(promoData) != 0:
+    promoDataList = [i for i in promoData.values()][-1]
+    promoPrice = promoData[0]['price']
+    price = promoPrice # overwrite normal price
+
+
+
+
+
+
+url_1 = "https://item.taobao.com/item.htm?spm=a21wu.241046-sg.4691948847.21.62ab7c25FvwYS6&scm=1007.15423.84311.100200300000005&id=556641227680&pvid=c06bb195-261c-43a9-bcae-b559c9b1d54c"
+
+url_3 = 'https://detailskip.taobao.com/service/getData/1/p1/item/detail/sib.htm?itemId=556641227680&modules=price,xmpPromotion'
+html3 = requests.get(url_3, headers={'referer': 'https://item.taobao.com/item.htm?id=558402991465'})
+html3.text
+
+
+itemId 
+
 url_1 = "https://item.taobao.com/item.htm?id=558402991465&ali_trackid=2:mm_56305873_13364096_53086045:1514212636_359_46994810&clk1=7cc148f29c0a0c85a88f580f56ddb47c&upsid=7cc148f29c0a0c85a88f580f56ddb47c"
+
 
 response = requests.get(url_1)
 soup = bs4.BeautifulSoup(response.text, "html.parser")
@@ -9,9 +48,17 @@ data = soup.find("div", {"id": "J_Pine"})
 itemId = data.get_attribute_list("data-itemid")
 sellerId = data.get_attribute_list("data-sellerid")
 
+
+url_3 = 'https://detailskip.taobao.com/service/getData/1/p1/item/detail/sib.htm?itemId=558402991465&modules=price,xmpPromotion'
+html3 = requests.get(url_3, headers={'referer': 'https://item.taobao.com/item.htm?id=558402991465'})
+html3.text
+
+
+
 url_3 = 'https://detailskip.taobao.com/service/getData/1/p1/item/detail/sib.htm?itemId=558402991465&sellerId=1014483995&modules=dynStock,qrcode,viewer,price,duty,xmpPromotion,delivery,upp,activity,fqg,zjys,couponActivity,soldQuantity,originalPrice,tradeContract&callback=onSibRequestSuccess'
 html3 = requests.get(url_3, headers={'referer': 'https://item.taobao.com/item.htm?id=558402991465'})
 html3.text
+
 
 
 url_2 = "https://detailskip.taobao.com/service/getData/1/p1/item/detail/sib.htm"
