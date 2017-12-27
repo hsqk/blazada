@@ -26,7 +26,31 @@ if len(promoData) != 0:
     price = promoPrice # overwrite normal price
 
 
+url = 'https://item.taobao.com/item.htm?id=558402991465&ali_trackid=2:mm_56305873_13364096_53086045:1514212636_359_46994810&clk1=7cc148f29c0a0c85a88f580f56ddb47c&upsid=7cc148f29c0a0c85a88f580f56ddb47c'
+startCutAtIndex = url.index('id=') + 3
+print('startCut',startCutAtIndex)
+currentIndex = startCutAtIndex
+itemId = ''
+urlLen = len(url)
+while currentIndex != urlLen and url[currentIndex] != '&':
+    itemId += url[currentIndex]
+    currentIndex += 1 #dont forget this lol
+#endwhile
 
+queryUrl = 'https://detailskip.taobao.com/service/getData/1/p1/item/detail/sib.htm?itemId=' + itemId + '&modules=price,xmpPromotion'
+response = requests.get(queryUrl, headers={'referer': 'https://item.taobao.com/item.htm?id=558402991465'})
+jsonDict = response.json()
+price = jsonDict['data']['price'] #normal price
+promoData = jsonDict['data']['promotion']['promoData']
+if len(promoData) != 0:
+    promoDataList = [i for i in promoData.values()][-1]
+    promoPrice = promoDataList[0]['price']
+    price = float(promoPrice) # overwrite normal price
+
+if price <= alertPrice:
+    return True
+else:
+    return False
 
 
 
